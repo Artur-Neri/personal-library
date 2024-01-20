@@ -15,25 +15,43 @@
     </style>
 </head>
 <body style="display: grid;place-items: center; height: 100vh; margin: 0; font-family:sans-serif;">
-    
 
     <?php 
+        $tituloMeuAcervo = "Acervo do Art";
 
-        $name = "Dark Matter";
-        $read = false;
-
-    ?>
-
-    <h1>
-        <?php
-            if ($read) {
-                echo "You have read $name";
-            } else {
-                echo "You have not read anything";
-            }
+        $biblioteca = [
+            ["titulo"=> "pai rico, pai pobre",
+            "autor"=> "robert kiyosaki",
+            "status"=> "lido"
+            ],
             
-        ?>
+            ["titulo"=> "comece pelo porquê",
+            "autor"=> "simon sinek",
+            "status"=> "lendo"
+            ],
+            ["titulo"=> "não me faça pensar",
+            "autor"=> "autor br",
+            "status"=> "não lido"
+            ],
+        ]
+    ?>
+    <h1 id="tituloPagina">
+       <?= $tituloMeuAcervo ?>
     </h1>
 
+    <table>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Status</th>
+        </tr>
+        <?php foreach ($biblioteca as $livro) : ?>
+            <tr>
+                <td><?= "{$livro['titulo']}" ?></td>
+                <td><?= "{$livro['autor']}" ?></td>
+                <td><?= "{$livro['status']}" ?></td>
+            </tr>
+        <?php endforeach ?>
+    </table>
 </body>
 </html>
