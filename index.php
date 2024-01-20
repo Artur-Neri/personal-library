@@ -17,6 +17,12 @@
 <body style="display: grid;place-items: center; height: 100vh; margin: 0; font-family:sans-serif;">
 
     <?php 
+    
+        
+
+    ?>
+
+    <?php 
         $tituloMeuAcervo = "Acervo do Art";
 
         $biblioteca = [
@@ -31,9 +37,27 @@
             ],
             ["titulo"=> "não me faça pensar",
             "autor"=> "autor br",
-            "status"=> "não lido"
+            "status"=> "lendo"
             ],
-        ]
+        ];
+
+        // FILTRO FLEXÍVEL
+
+        function filter($itens, $fn) {
+            $itensFiltrados = [];
+
+            foreach ($itens as $item) {
+                if ($fn($item)){
+                    $itensFiltrados[] = $item;
+                }
+            }
+            return $itensFiltrados;
+        }
+
+        $livrosFiltrados = filter($biblioteca, function($livro) {
+            return $livro['status'] != "lendo";
+        })
+
     ?>
     <h1 id="tituloPagina">
        <?= $tituloMeuAcervo ?>
@@ -45,7 +69,7 @@
             <th>Autor</th>
             <th>Status</th>
         </tr>
-        <?php foreach ($biblioteca as $livro) : ?>
+        <?php foreach ($livrosFiltrados as $livro) : ?>
             <tr>
                 <td><?= "{$livro['titulo']}" ?></td>
                 <td><?= "{$livro['autor']}" ?></td>
